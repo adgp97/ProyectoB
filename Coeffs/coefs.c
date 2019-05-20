@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "fdacoeffs.h"
 
-//testing the way coefficients are capture from Matlab generated header
+//testing the way coefficients are taken from Matlab generated header
 //it will print the coefficients to a .txt file
 int main(){
 
