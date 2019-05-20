@@ -1,0 +1,7 @@
+- Export the coefficients from C header instead of exporting them from .txt file.
+
+- Use the symmetry property of FIR filter coefficients.
+
+- Adapt to using char data insted of float.
+
+- If test results succesful, adapt and implement in microcontroller.
