@@ -2,4 +2,4 @@
 
 - Adapt to using char data insted of float.
 
-- If test results succesful, adapt and implement in microcontroller.
+- If test results succesful, adapt and implement on microcontroller.
