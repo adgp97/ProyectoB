@@ -1,23 +1,17 @@
 #include <stdio.h>
+#include "fdacoeffs3.h"
 
-//extern B;											//Coeficientes del filtro definidos en fdacoefs.h
-#define BUFFER_LEN 101								//Tamaño del buffer y orden del filtro
+#define BUFFER_LEN h_len							//Tamaño del buffer y orden del filtro
 #define SIGNAL_DATA 1001							//Prueba en C. Cantidad de datos en el archivo de prueba
-#define SIGNAL_VEC_LEN SIGNAL_DATA+BUFFER_LEN 		//Prueba en C. La longitud del arreglo donde se alamacena la se;al
-																	//es de tama;o igual a la cantidad de datos en el archivo mas el
-																	//el tama;o del buffer por el "zero-padding"
+
 void loadSignal(float *signal);						//Prueba en C. Funcion para cargar data de la se;al original de archivo
-void loadFilter(float *filter);						//Prueba en C. Funcion para cargar los coeficienteas del filtro de archivo
 
 int main(){
 
-	float x[BUFFER_LEN], h[BUFFER_LEN];				//Definiciones de las variables de la convolucion
-	//h = B;										//Importando los coeficientes del filtro al arreglo h
+	float x[BUFFER_LEN];							//Definiciones de las variables de la convolucion
 
-	//h = B;											//Prueba en C. Casteo de los coeficientes del filtro
-	float signal[SIGNAL_VEC_LEN];					//Prueba en C. Inicializacion del arreglo que contiene los datos del archivo
+	float signal[SIGNAL_DATA];						//Prueba en C. Inicializacion del arreglo que contiene los datos del archivo
 	loadSignal(signal);								//Prueba en C. Cargar los datos del archivo en el arreglo signal
-	loadFilter(h);									//Prueba en C. Cargar los coeficientes del filtro desde archivo
 	int indice = 0;									//Prueba en C. Indice de los datos de la se;al del archivo
 	FILE *result;									//Prueba en C. 
 	result = fopen("y.txt","a");					//Prueba en C. Abrir el archivo para guardar los resultados
@@ -98,25 +92,8 @@ void loadSignal(float *signal){
 	fclose(fptr);
 
 	//Zero padding
-	for (index; index < SIGNAL_VEC_LEN; index++)
+	for (index; index < SIGNAL_DATA; index++)
 	{
 		signal[index] = 0;
 	}
-}
-
-//Cargar los coeficientes del filtro desde un archivo para hacer pruebas del algoritmo
-void loadFilter(float *filter){
-
-	FILE *fptr;
-
-	fptr = fopen("coefs.txt", "r");
-
-	int index = 0;
-
-	do{
-	fscanf(fptr,"%f", &filter[index]);
-	index++;
-	}while(!feof(fptr));
-
-	fclose(fptr);
 }
