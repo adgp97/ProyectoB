@@ -1,81 +1,89 @@
 #include <stdio.h>
 #include "fdacoeffs3.h"
 
-#define BUFFER_LEN h_len							//Tamaño del buffer y orden del filtro
-#define SIGNAL_DATA 1001							//Prueba en C. Cantidad de datos en el archivo de prueba
+//#define BUFFER_LEN h_len/2 + h_len%2				//FIR coefficients are symmetrical so only half of them are needed
 
-void loadSignal(float *signal);						//Prueba en C. Funcion para cargar data de la se;al original de archivo
+#define BUFFER_LEN h_len							//Buffer size and filter order
+#define SIGNAL_DATA 1001							//PC test. Number of elements in test file
+
+void loadSignal(float *signal);						//PC test. Function that loads a file content into an array
 
 int main(){
 
-	float x[BUFFER_LEN];							//Definiciones de las variables de la convolucion
 
-	float signal[SIGNAL_DATA];						//Prueba en C. Inicializacion del arreglo que contiene los datos del archivo
-	loadSignal(signal);								//Prueba en C. Cargar los datos del archivo en el arreglo signal
-	int indice = 0;									//Prueba en C. Indice de los datos de la se;al del archivo
-	FILE *result;									//Prueba en C. 
-	result = fopen("y.txt","a");					//Prueba en C. Abrir el archivo para guardar los resultados
+	float x[BUFFER_LEN];							//Buffer vextor definition
 
-//**********************************************************************************************************************************************************************//
-	//caso cuando se esta llenando el buffer por primera vez
+	float signal[SIGNAL_DATA];						//PC test. Initialization of the array that contains data from file
+	loadSignal(signal);								//PC test. Call to function tha loads the file data into the array
+	int indice = 0;									//PC test. Index initialization
+	FILE *result;									//PC test. 
+	result = fopen("y.txt","a");					//PC test. Creating and opening file to store the results in
+
+//**********************************************************************************************************************************************************************
+	//Case 1: buffer is being loaded for the first time
 	int i = 0;
-	for (int offset = 0; offset < BUFFER_LEN; offset++)	//Este loop se encarga de agregar las
-	{													//muestras al buffer
+	for (int offset = 0; offset < BUFFER_LEN; offset++){													
+		//This loop loads the samples into the buffer
 
-		x[offset] = signal[indice];					//Prueba en C. "Muestreo" de la señal y almacenamiento en el buffer
-		indice++;									//Prueba en C. Incremento del indice de la se;al de entrada, equivalente a muestrear la siguiente vez
-													//El valor final es indice = offset + 1
-		//getvalue ----> x[offset]					//Codewarrior
+		x[offset] = signal[indice];					//PC test. The signal is "sampled" and stored in the buffer
+		indice++;									//PC test. Input signal index is incremented by one which "sets the next sample"
+													//The final value is index = offset + 1
+
+		//getvalue ----> x[offset]					//Codewarrior. Actual sampling
 		
 		int i = 0;
-		float y = 0;								//Prueba en C. En la version de Codewarrior, y es un entero
-		for (int k = offset; k >= 0; k--)			//Este loop hace la convolucion
-		{
+		float y = 0;								//PC test. In the final version (microcontroller) "y" will be type int
+
+		for (int k = offset; k >= 0; k--){
+			//This loop calculates the convolution given that the buffer is not full
 			y += h[k]*x[i];
 			i++;			
 		}
 
-		fprintf(result,"%f\n",y);					//Prueba en C. Imprimir el resultado en el archivo
-		//sendblock ----> y 						//Codewarrior
+		fprintf(result,"%f\n",y);					//PC test. Prints the result to y.txt
+		//sendblock ----> y 						//Codewarrior. Serial communication with PC
 	}
 
 
-//*******************************************************************************************************************//
-	//Caso cuando el buffer ya esta lleno
+//*******************************************************************************************************************
+	//Case 2: The buffer is full
+
 	int offset = 0;
 	//for(;;){ 										//Codewarrior
-	do 												//Este loop se encarga de sobreescribir
-	{												//datos del buffer al agregar muestras nuevas
+	do{												//PC test. In the final version (microcontroller) this will be an infinite "for"
+		//This loop overwirtes the oldest data stored with the new samples
 
-		x[offset] = signal[indice];					//Prueba en C. "Muestreo" de la señal y almacenamiento en el buffer
-		indice++;									//Prueba en C. Incremento del indice de la se;al de entrada, equivalente a muestrear la siguiente vez
+		x[offset] = signal[indice];					//PC test. The signal is "sampled" and stored in the buffer
+		indice++;									//PC test. Input signal index is incremented by one which "sets the next sample"
 
-		//getval ----> x[offset]					//Codewarrior
+		//getval ----> x[offset]					//Codewarrior. Actual sampling 
 
 		offset = (offset==(BUFFER_LEN-1) ? 0:offset + 1);
 
-		float y = 0;								//Prueba en C. En la version de Codewarrior, y es un entero
+		float y = 0;								//PC test. In the final version (microcontroller) "y" will be type int
 
-		for (int k = BUFFER_LEN - 1; k >= 0; k--)	//Este loop hace la convolucion
-		{
+		for (int k = BUFFER_LEN - 1; k >= 0; k--){
+			//This loop calculates the convolution given that the buffer is full
+
 			y += h[k]*x[offset];
-			offset = (offset==(BUFFER_LEN-1) ? 0:offset + 1);
+			offset = (offset==(BUFFER_LEN-1) ? 0:offset + 1);	//This checks if the offset is at the end of the array. If so, it resets. If not, it is incremented by one
 		}
 
 
-		fprintf(result, "%f\n", y);					//Prueba en C. 
-		//sendblock ----> y 						//Codewarrior
-	}while(indice != SIGNAL_DATA);					//Prueba en C. La version de Codewarrior es un for infinito
+		fprintf(result, "%f\n", y);					//PC test. Prints the result to y.txt 
+		//sendblock ----> y 						//Codewarrior. Serial communication with PC
+	}while(indice != SIGNAL_DATA);					//PC test. In the final version (microcontroller) this will be an infinite "for"
 
 
-	fclose(result);									//Prueba en C. Cerrar el archivo
-	getchar();										//Prueba en C
-	return 0;										//Prueba en C
+	fclose(result);									//PC test. Closing file
+
+	getchar();										//PC test
+	return 0;										//PC test
 }
 
 
 //******************************************************************************************************
-//Cargar la señal desde un archivo para hacer pruebas del algoritmo
+//This function loads the test signal from x.txt file
 void loadSignal(float *signal){
 
 	FILE *fptr;
