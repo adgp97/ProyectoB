@@ -1,0 +1,4 @@
+/* version.c */
+/* The version of the compiler is */
+/* assigned to variable "version." */
+long version = __MWERKS__;
