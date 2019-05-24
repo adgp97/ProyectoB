@@ -1,6 +1,0 @@
-para generar el assembly
-gcc -S file.c
-
-para compilar el archivo
-gcc file.c -o file.exe
-
