@@ -11,7 +11,7 @@ t = 0:0.00001:0.01;
 x1000 = sin(2*pi*10000*t);
 x500 = sin(2*pi*5000*t);
 x100 = sin(2*pi*100*t);
-x = 4*(x1000 + x500 + x100);
+x = floor(46*(x1000 + x500 + x100));
 %% Graficas
 figure()
 subplot(2,2,1)
