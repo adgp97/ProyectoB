@@ -60,7 +60,7 @@ int main(){
 
 		offset = (offset==(BUFFER_LEN-1) ? 0:offset + 1);
 
-		int y = 0;									//PC test. In the final version (microcontroller) "y" will be type int
+		int y = 0;									//Reset the value
 
 		for (int k = BUFFER_LEN - 1; k >= 0; k--){
 			//This loop calculates the convolution given that the buffer is full
