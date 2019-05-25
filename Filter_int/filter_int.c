@@ -40,7 +40,7 @@ int main(){
 			i++;			
 		}
 
-		fprintf(result,"%d\n",y);					//PC test. Prints the result to y.txt
+		fprintf(result,"%d\n",y);					//PC test. Prints the result to y_int.txt
 		//sendblock ----> y 						//Codewarrior. Serial communication with PC
 	}
 
@@ -60,7 +60,7 @@ int main(){
 
 		offset = (offset==(BUFFER_LEN-1) ? 0:offset + 1);
 
-		int y = 0;								//PC test. In the final version (microcontroller) "y" will be type int
+		int y = 0;									//PC test. In the final version (microcontroller) "y" will be type int
 
 		for (int k = BUFFER_LEN - 1; k >= 0; k--){
 			//This loop calculates the convolution given that the buffer is full
@@ -70,7 +70,7 @@ int main(){
 		}
 
 
-		fprintf(result, "%d\n", y);					//PC test. Prints the result to y.txt 
+		fprintf(result, "%d\n", y);					//PC test. Prints the result to y_int.txt 
 		//sendblock ----> y 						//Codewarrior. Serial communication with PC
 	}while(indice != SIGNAL_DATA);					//PC test. In the final version (microcontroller) this will be an infinite "for"
 
@@ -83,7 +83,7 @@ int main(){
 
 
 //******************************************************************************************************
-//This function loads the test signal from x.txt file
+//PC test. This function loads the test signal from x.txt file
 void loadSignal(char *signal){
 
 	FILE *fptr;
@@ -91,10 +91,11 @@ void loadSignal(char *signal){
 	fptr = fopen("x_char.txt", "r");
 
 	int index = 0;
+	int aux;
 
 	do{
-	fscanf(fptr,"%c", &signal[index]);
-	printf("%c\n",signal[index] );
+	fscanf(fptr,"%d", &aux);						//The data is scanned as integer
+	signal[index] = (char)aux;						//Then casted to char
 	index++;
 	}while(!feof(fptr));
 
