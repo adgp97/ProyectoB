@@ -1,0 +1,35 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Documentation/shishi_SIGNALS.txt" FileDate="2019-06-16, 21:08:48" FileAge="1560735528273" FileType="3072" />
+      <File Name="Sources/Events.h" FileDate="2019-06-16, 21:06:21" FileAge="1560735381392" FileType="131328" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2019-06-14, 22:02:47" FileAge="1560565967109" FileType="45637" />
+      <File Name="Documentation/shishi_Settings.xml" FileDate="2019-06-16, 21:08:48" FileAge="1560735528455" FileType="3072" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2019-06-14, 22:02:47" FileAge="1560565967113" FileType="45637" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2019-06-14, 22:02:47" FileAge="1560565967105" FileType="45637" />
+      <File Name="Sources/Events.c" FileDate="2019-06-16, 21:06:21" FileAge="1560735381422" FileType="131328" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2019-06-14, 22:02:47" FileAge="1560565967089" FileType="8" CompNumb="4" />
+      <File Name="Sources/main.c" FileDate="2019-06-16, 21:06:21" FileAge="1560735381312" FileType="128" />
+      <File Name="Generated_Code/PTA2.h" FileDate="2019-06-16, 21:08:48" FileAge="1560735528186" FileType="45637" CompNumb="17" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2019-06-16, 15:08:51" FileAge="1560713931070" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PTA2.c" FileDate="2019-06-16, 21:08:48" FileAge="1560735528177" FileType="45637" CompNumb="17" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2019-06-14, 22:02:47" FileAge="1560565967121" FileType="45637" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2019-06-16, 21:08:48" FileAge="1560735528218" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PTC0.h" FileDate="2019-06-16, 21:06:21" FileAge="1560735381265" FileType="45637" CompNumb="18" />
+      <File Name="Documentation/shishi.txt" FileDate="2019-06-16, 21:06:21" FileAge="1560735381764" FileType="3072" />
+      <File Name="Generated_Code/PTC0.c" FileDate="2019-06-16, 21:06:21" FileAge="1560735381263" FileType="45637" CompNumb="18" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2019-06-14, 22:02:47" FileAge="1560565967117" FileType="45637" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2019-06-16, 21:06:21" FileAge="1560735381383" FileType="45637" CompNumb="4" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>9</CodeGenReference>
+</CodeGenerationInfo>
