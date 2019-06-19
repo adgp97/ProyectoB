@@ -18,23 +18,23 @@
         <Line>PE_Const</Line>
         <Line>IO_Map</Line>
       </GenSharedModules>
-      <ShrdHeaderAge0>1322149089</ShrdHeaderAge0>
+      <ShrdHeaderAge0>1322357550</ShrdHeaderAge0>
       <ShrdCodeAge0>-1</ShrdCodeAge0>
       <ShrdAsemblAge0>-1</ShrdAsemblAge0>
-      <ShrdHeaderAge1>1322149089</ShrdHeaderAge1>
+      <ShrdHeaderAge1>1322357550</ShrdHeaderAge1>
       <ShrdCodeAge1>-1</ShrdCodeAge1>
       <ShrdAsemblAge1>-1</ShrdAsemblAge1>
-      <ShrdHeaderAge2>1322149089</ShrdHeaderAge2>
+      <ShrdHeaderAge2>1322357550</ShrdHeaderAge2>
       <ShrdCodeAge2>-1</ShrdCodeAge2>
       <ShrdAsemblAge2>-1</ShrdAsemblAge2>
-      <ShrdHeaderAge3>1322149089</ShrdHeaderAge3>
-      <ShrdCodeAge3>1322149089</ShrdCodeAge3>
+      <ShrdHeaderAge3>1322357550</ShrdHeaderAge3>
+      <ShrdCodeAge3>1322357550</ShrdCodeAge3>
       <ShrdAsemblAge3>-1</ShrdAsemblAge3>
       <GenExtraFiles lines_count="2">
         <Line>Project_Settings\Linker_Files\ProcessorExpert.prm</Line>
         <Line>Generated_Code\Vectors.c</Line>
       </GenExtraFiles>
-      <XtraAge1>1322289653</XtraAge1>
+      <XtraAge1>1322422134</XtraAge1>
       <GenExtraFileType1>4</GenExtraFileType1>
       <GenLinkedFiles lines_count="0" />
       <GenEventModules lines_count="1">
@@ -59,7 +59,7 @@
         <Line>PE_Types</Line>
         <Line>PTA2</Line>
         <Line>PTC0</Line>
-        <Line>PTD3</Line>
+        <Line>PTD2</Line>
         <Line>PTE6</Line>
         <Line>TI1</Line>
       </GenAllModules>
@@ -69,14 +69,14 @@
         <Line>AS1</Line>
         <Line>PTA2</Line>
         <Line>PTC0</Line>
-        <Line>PTD3</Line>
+        <Line>PTD2</Line>
         <Line>PTE6</Line>
         <Line>TI1</Line>
       </GenBeanModules>
     </GenFiles>
     <SignalListFile>Documentation\ProyectoB_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>MetrowerksHCS08CC</DestinationCompiler>
-    <ProjectModificationStamp>13</ProjectModificationStamp>
+    <ProjectModificationStamp>17</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>
@@ -132,8 +132,8 @@
     <GenComponentVersion>01.003</GenComponentVersion>
     <GenDriverVersion>01.40</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1322284725</HeaderAge>
-    <CodeAge>1322289653</CodeAge>
+    <HeaderAge>1322357550</HeaderAge>
+    <CodeAge>1322422134</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>20</GenNumMethods>
     <SetHighSpeed>false</SetHighSpeed>
@@ -185,8 +185,8 @@
     <GenComponentVersion>01.690</GenComponentVersion>
     <GenDriverVersion>01.30</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1322285194</HeaderAge>
-    <CodeAge>1322285194</CodeAge>
+    <HeaderAge>1322416548</HeaderAge>
+    <CodeAge>1322416548</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>19</GenNumMethods>
     <Enable>false</Enable>
@@ -221,90 +221,104 @@
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
-    <GenMethodPos>12</GenMethodPos>
+    <GenMethodPos>14</GenMethodPos>
     <MethodPos>
       <MethodPos0>Interrupt</MethodPos0>
       <MethodType>internal_method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>104</LineBeg>
-      <LineEnd>115</LineEnd>
+      <LineBeg>107</LineBeg>
+      <LineEnd>118</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos1>HWEnDi</MethodPos1>
       <MethodType>internal_method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>116</LineBeg>
-      <LineEnd>128</LineEnd>
+      <LineBeg>119</LineBeg>
+      <LineEnd>131</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos2>Measure</MethodPos2>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>130</LineBeg>
-      <LineEnd>164</LineEnd>
+      <LineBeg>133</LineBeg>
+      <LineEnd>167</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos3>GetChanValue8</MethodPos3>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>165</LineBeg>
-      <LineEnd>200</LineEnd>
+      <LineBeg>168</LineBeg>
+      <LineEnd>203</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos4>GetValue16</MethodPos4>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>201</LineBeg>
-      <LineEnd>230</LineEnd>
+      <LineBeg>204</LineBeg>
+      <LineEnd>233</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos5>Init</MethodPos5>
       <MethodType>internal_method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>231</LineBeg>
-      <LineEnd>243</LineEnd>
+      <LineBeg>234</LineBeg>
+      <LineEnd>246</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos6>Interrupt</MethodPos6>
-      <MethodType>internal_method</MethodType>
+      <MethodPos6>ClrSumV</MethodPos6>
+      <MethodType>internal_method_declaration</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>115</LineBeg>
-      <LineEnd>132</LineEnd>
+      <LineBeg>99</LineBeg>
+      <LineEnd>109</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos7>HWEnDi</MethodPos7>
+      <MethodPos7>Interrupt</MethodPos7>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>133</LineBeg>
+      <LineBeg>128</LineBeg>
       <LineEnd>151</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos8>Measure</MethodPos8>
-      <MethodType>method</MethodType>
-      <ModuleType>Code</ModuleType>
-      <LineBeg>152</LineBeg>
-      <LineEnd>198</LineEnd>
-    </MethodPos>
-    <MethodPos>
-      <MethodPos9>GetChanValue8</MethodPos9>
-      <MethodType>method</MethodType>
-      <ModuleType>Code</ModuleType>
-      <LineBeg>199</LineBeg>
-      <LineEnd>241</LineEnd>
-    </MethodPos>
-    <MethodPos>
-      <MethodPos10>GetValue16</MethodPos10>
-      <MethodType>method</MethodType>
-      <ModuleType>Code</ModuleType>
-      <LineBeg>242</LineBeg>
-      <LineEnd>278</LineEnd>
-    </MethodPos>
-    <MethodPos>
-      <MethodPos11>Init</MethodPos11>
+      <MethodPos8>ClrSumV</MethodPos8>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>279</LineBeg>
-      <LineEnd>301</LineEnd>
+      <LineBeg>152</LineBeg>
+      <LineEnd>167</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos9>HWEnDi</MethodPos9>
+      <MethodType>internal_method</MethodType>
+      <ModuleType>Code</ModuleType>
+      <LineBeg>168</LineBeg>
+      <LineEnd>188</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos10>Measure</MethodPos10>
+      <MethodType>method</MethodType>
+      <ModuleType>Code</ModuleType>
+      <LineBeg>189</LineBeg>
+      <LineEnd>235</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos11>GetChanValue8</MethodPos11>
+      <MethodType>method</MethodType>
+      <ModuleType>Code</ModuleType>
+      <LineBeg>236</LineBeg>
+      <LineEnd>281</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos12>GetValue16</MethodPos12>
+      <MethodType>method</MethodType>
+      <ModuleType>Code</ModuleType>
+      <LineBeg>282</LineBeg>
+      <LineEnd>319</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos13>Init</MethodPos13>
+      <MethodType>internal_method</MethodType>
+      <ModuleType>Code</ModuleType>
+      <LineBeg>320</LineBeg>
+      <LineEnd>342</LineEnd>
     </MethodPos>
     <GenExtraFilesCount>0</GenExtraFilesCount>
   </ComponentID_8>
@@ -314,8 +328,8 @@
     <GenComponentVersion>02.611</GenComponentVersion>
     <GenDriverVersion>01.33</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1322284725</HeaderAge>
-    <CodeAge>1322284725</CodeAge>
+    <HeaderAge>1322357550</HeaderAge>
+    <CodeAge>1322357550</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>30</GenNumMethods>
     <Enable>false</Enable>
@@ -544,8 +558,8 @@
     <GenComponentVersion>02.086</GenComponentVersion>
     <GenDriverVersion>03.27</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1322165424</HeaderAge>
-    <CodeAge>1322165424</CodeAge>
+    <HeaderAge>1322357550</HeaderAge>
+    <CodeAge>1322357550</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>9</GenNumMethods>
     <GetDir>false</GetDir>
@@ -584,8 +598,8 @@
     <GenComponentVersion>02.086</GenComponentVersion>
     <GenDriverVersion>03.27</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1322289653</HeaderAge>
-    <CodeAge>1322289653</CodeAge>
+    <HeaderAge>1322357550</HeaderAge>
+    <CodeAge>1322357550</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>9</GenNumMethods>
     <GetDir>false</GetDir>
@@ -662,12 +676,12 @@
   </ComponentID_17>
   <ComponentID_11>
     <Generated>true</Generated>
-    <GenCompName>PTD3</GenCompName>
+    <GenCompName>PTD2</GenCompName>
     <GenComponentVersion>02.086</GenComponentVersion>
     <GenDriverVersion>03.27</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1322165424</HeaderAge>
-    <CodeAge>1322165424</CodeAge>
+    <HeaderAge>1322422134</HeaderAge>
+    <CodeAge>1322422134</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>9</GenNumMethods>
     <GetDir>false</GetDir>
@@ -706,8 +720,8 @@
     <GenComponentVersion>02.086</GenComponentVersion>
     <GenDriverVersion>03.27</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1322289653</HeaderAge>
-    <CodeAge>1322289653</CodeAge>
+    <HeaderAge>1322357550</HeaderAge>
+    <CodeAge>1322357550</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>9</GenNumMethods>
     <GetDir>false</GetDir>
@@ -788,8 +802,8 @@
     <GenComponentVersion>02.161</GenComponentVersion>
     <GenDriverVersion>01.23</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1322284725</HeaderAge>
-    <CodeAge>1322284725</CodeAge>
+    <HeaderAge>1322357550</HeaderAge>
+    <CodeAge>1322357550</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>14</GenNumMethods>
     <Enable>false</Enable>

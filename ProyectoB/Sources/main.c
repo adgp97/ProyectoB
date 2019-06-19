@@ -34,7 +34,7 @@
 #include "AS1.h"
 #include "PTA2.h"
 #include "PTC0.h"
-#include "PTD3.h"
+#include "PTD2.h"
 #include "PTE6.h"
 #include "TI1.h"
 /* Include shared modules, which are used for whole project */
@@ -43,17 +43,8 @@
 #include "PE_Const.h"
 #include "IO_Map.h"
 
-int h_len = 101;
-char h[101] = {
-      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    1,    0,
-     -1,   -1,    0,    1,    0,   -1,   -1,    1,    2,    1,   -2,   -2,
-      1,    3,    1,   -3,   -3,    1,    4,    1,   -3,   -4,    1,    5,
-      2,   -4,   -4,    2,    5,    2,   -5,   -5,    2,    6,    2,   -5,
-     -5,    2,    6,    2,   -5,   -5,    2,    6,    2,   -5,   -5,    2,
-      5,    2,   -4,   -4,    2,    5,    1,   -4,   -3,    1,    4,    1,
-     -3,   -3,    1,    3,    1,   -2,   -2,    1,    2,    1,   -1,   -1,
-      0,    1,    0,   -1,   -1,    0,    1,    0,    0,    0,    0,    0,
-      0,    0,    0,    0,    0};
+int h_len = 11;
+char h[11] = {0,  -10,   -8,   12,   39,   51,   39,   12,   -8,  -10,    0};
 int samp_flg = 0;		//Sampling flag. 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
@@ -61,17 +52,17 @@ int samp_flg = 0;		//Sampling flag.
 void main(void)
 {
   /* Write your local variable definition here */
-	char aux, x[101], trama[3];		
+	char aux1, aux2, x1[11], x2[11], trama[4];		
 	/*
-	 * aux 	 : auxiliary variable for storing the sampled data momentarily.
-	 * x 	 : buffer for the fir filter.
+	 * aux 	 : auxiliary variable for storing the sampled data momentarily. aux1 for x coordinate, aux2 for y coordinate.
+	 * x 	 : buffer for the fir filter. x1 for x coordinate, x2 for y coordinate.
 	 * trama : frame for serial communication.
 	 */
-	int i, offset, k, y;
+	int i, offset, k, y1, y2;
 	/*
 	 * i, k   : auxiliary counters.
 	 * offset : auxiliary index for buffer array.
-	 * y      : filter output.
+	 * y      : filter output. y1 for x coordinate, y2 for y coordinate.
 	 */
 	bool  filt_flg = TRUE;
 	/*
@@ -95,34 +86,38 @@ void main(void)
 		
 		while(samp_flg == 0){}			// Idle while not ready to sample.
 		AD1_Measure(TRUE);				//Measure.
-		AD1_GetChanValue8(0,&aux);		//Converting and storing measured value into aux.
-		x[offset] = aux;				//Adding the sampled value to the buffer.
+		AD1_GetChanValue8(0,&aux1);		//Converting and storing measured value into aux.
+		AD1_GetChanValue8(1,&aux2);
+		x1[offset] = aux1;				//Adding the sampled value to the buffer.
+		x2[offset] = aux2;
 		samp_flg = 0;					//Reset sample flag.
 		
-		i = 0; y = 0;	
+		i = 0; y1 = 0; y2 = 0;	
 		
 		for (k = offset; k >= 0; k--){
 			//This loop calculates the convolution given that the buffer is not full.
-			y += h[k]*x[i];
+			y1 += h[k]*x1[i];
+			y2 += h[k]*x2[i];
 			i++;			
 		}
 		
 		//Building the frame.
-		trama[0] = 0b0000000000111111 & (y >> 10);
-		trama[1] = 0b0000000000011111 & (y >> 5);
-		trama[2] = 0b0000000000011111 & y;
+		trama[0] = 0b0000000000001111 & (y1 >> 4);
+		trama[1] = (0b0000000000001111 & y1) | 0b0000000001000000;
+		trama[2] = (0b0000000000001111 & (y2 >> 4)) | 0b0000000010000000;
+		trama[3] = (0b0000000011001111 & y2) | 0b0000000011000000;
 		//Digital signals.
 		  //D0
 		  if(PTA2_GetVal() == 0){
-			  trama[0] = trama[1] & 0b11011111;
+			  trama[0] = trama[0] & 0b11011111;
 		  }else {
-			  trama[0] = trama[1] | 0b00100000;
+			  trama[0] = trama[0] | 0b00100000;
 		  }
 		  //D1
-		  if(PTD3_GetVal() == 0){
-			  trama[1] = trama[2] & 0b11011111;
+		  if(PTD2_GetVal() == 0){
+			  trama[0] = trama[0] & 0b11101111;
 		  }else{
-			  trama[1] = trama[2] | 0b00100000;
+			  trama[0] = trama[0] | 0b00010000;
 		  }
 		
 		//Sending the frame
@@ -138,17 +133,19 @@ void main(void)
   			
   			while(samp_flg == 0){}		//Idle while not ready to sample.
   			AD1_Measure(TRUE);			//Measure.
-  			AD1_GetChanValue8(0,&aux);	//Converting and storing measured value into aux.
-  			x[offset] = aux;			//Adding the sampled value to the buffer.
+  			AD1_GetChanValue8(0,&aux1);	//Converting and storing measured value into aux.
+  			AD1_GetChanValue8(1,&aux2);
+  			x1[offset] = aux1;			//Adding the sampled value to the buffer.
+  			x2[offset] = aux2;
   			samp_flg = 0;				//Reset samplig flag.
   			
   			offset = (offset==(h_len-1) ? 0:offset + 1);	//Checking if the pointer is at the end of buffer.
 
-  			y = 0;	//Reset output value.
+  			y1 = 0;	y2 = 0;				//Reset output value.
   			
   			
   			//Filter activation/deactivation
-  			if(PTD3_GetVal() != 0){
+  			if(PTD2_GetVal() == 0){
   				filt_flg = !filt_flg;	//The state changes when the button is pushed.
   			}
  
@@ -158,22 +155,25 @@ void main(void)
   				PTE6_SetVal();			//Just for testing purposes.
   				
   	  			//Building the frame.
-  				y = aux;
-  	  			trama[0] = 0b0000000000111111 & (y >> 10);
-  				trama[1] = 0b0000000000011111 & (y >> 5);
-  				trama[2] = 0b0000000000011111 & y;
+  				y1 = aux1;
+  				y2 = aux2;
+  				//Building the frame.
+  				trama[0] = 0b0000000000001111 & (y1 >> 4);
+  				trama[1] = (0b0000000000001111 & y1) | 0b0000000001000000;
+  				trama[2] = (0b0000000000001111 & (y2 >> 4)) | 0b0000000010000000;
+  				trama[3] = (0b0000000000001111 & y2) | 0b0000000011000000;
   				//Digital signals.
   				  //D0
   				  if(PTA2_GetVal() == 0){
-  					  trama[1] = trama[1] & 0b11011111;
+  					  trama[0] = trama[0] & 0b11011111;
   				  }else {
-  					  trama[1] = trama[1] | 0b00100000;
+  					  trama[0] = trama[0] | 0b00100000;
   				  }
   				  //D1
-  				  if(PTD3_GetVal() == 0){
-  					  trama[2] = trama[2] & 0b11011111;
+  				  if(PTD2_GetVal() == 0){
+  					  trama[0] = trama[0] & 0b11101111;
   				  }else{
-  					  trama[2] = trama[2] | 0b00100000;
+  					  trama[0] = trama[0] | 0b00010000;
   				  }
   				//Sending the frame.
   				AS1_SendBlock(trama,sizeof(trama),&ptr);
@@ -187,26 +187,28 @@ void main(void)
   			for (k = h_len - 1; k >= 0; k--){
   				//This loop calculates the convolution given that the buffer is full.
 
-  				y += h[k]*x[offset];
+  				y1 += h[k]*x1[offset];
+  				y2 += h[k]*x2[offset];
   				offset = (offset==(h_len-1) ? 0:offset + 1);	//This checks if the offset is at the end of the array. If so, it resets. If not, it is incremented by one.
   			}
 
   			//Building the frame.
-  			trama[0] = 0b0000000000111111 & (y >> 10);
-			trama[1] = 0b0000000000011111 & (y >> 5);
-			trama[2] = 0b0000000000011111 & y;
+  			trama[0] = 0b0000000000001111 & (y1 >> 4);
+			trama[1] = (0b0000000000001111 & y1) | 0b0000000001000000;
+			trama[2] = (0b0000000000001111 & (y2 >> 4)) | 0b0000000010000000;
+			trama[3] = (0b0000000011001111 & y2) | 0b0000000011000000;
 			//Digital signals.
 			  //D0
 			  if(PTA2_GetVal() == 0){
-				  trama[0] = trama[1] & 0b11011111;
+				  trama[0] = trama[0] & 0b11011111;
 			  }else {
-				  trama[0] = trama[1] | 0b00100000;
+				  trama[0] = trama[0] | 0b00100000;
 			  }
 			  //D1
-			  if(PTD3_GetVal() == 0){
-				  trama[1] = trama[2] & 0b11011111;
+			  if(PTD2_GetVal() == 0){
+				  trama[0] = trama[0] & 0b11101111;
 			  }else{
-				  trama[1] = trama[2] | 0b00100000;
+				  trama[0] = trama[0] | 0b00010000;
 			  }
 			//Sending the frame.
 			AS1_SendBlock(trama,sizeof(trama),&ptr);

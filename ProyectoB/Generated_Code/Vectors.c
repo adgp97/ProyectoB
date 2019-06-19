@@ -5,7 +5,7 @@
 **     Processor   : MC9S08QE128CLK
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-06-16, 17:15, # CodeGen: 11
+**     Date/Time   : 2019-06-18, 17:59, # CodeGen: 16
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -63,7 +63,7 @@
 #include "AS1.h"
 #include "PTA2.h"
 #include "PTC0.h"
-#include "PTD3.h"
+#include "PTD2.h"
 #include "PTE6.h"
 #include "TI1.h"
 

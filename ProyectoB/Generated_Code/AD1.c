@@ -6,7 +6,7 @@
 **     Component   : ADC
 **     Version     : Component 01.690, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-06-16, 15:04, # CodeGen: 8
+**     Date/Time   : 2019-06-18, 15:13, # CodeGen: 15
 **     Abstract    :
 **         This device "ADC" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -17,9 +17,12 @@
 **          Interrupt service/event                        : Enabled
 **            A/D interrupt                                : Vadc
 **            A/D interrupt priority                       : medium priority
-**          A/D channels                                   : 1
+**          A/D channels                                   : 2
 **            Channel0                                     : 
-**              A/D channel (pin)                          : PTA0_KBI1P0_TPM1CH0_ADP0_ACMP1PLUS
+**              A/D channel (pin)                          : PTF1_ADP11
+**              A/D channel (pin) signal                   : 
+**            Channel1                                     : 
+**              A/D channel (pin)                          : PTF0_ADP10
 **              A/D channel (pin) signal                   : 
 **          A/D resolution                                 : 8 bits
 **          Conversion time                                : 2.676981 µs
@@ -92,22 +95,32 @@
 #include "Events.h"
 #include "AD1.h"
 
-#pragma MESSAGE DISABLE C5703          /* Disable warning C5703 "Parameter is not referenced" */
 
 
-
+static void ClrSumV(void);
+/*
+** ===================================================================
+**     Method      :  ClrSumV (component ADC)
+**
+**     Description :
+**         The method clears the internal buffers used to store sum of a 
+**         number of last conversions.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
 #define STOP            0x00U          /* STOP state           */
 #define MEASURE         0x01U          /* MESURE state         */
 #define CONTINUOUS      0x02U          /* CONTINUOS state      */
 #define SINGLE          0x03U          /* SINGLE state         */
 
 
-static const  byte Channels = 0x40U;   /* Content for the device control register */
+static const  byte Channels[2] = {0x4BU,0x4AU};  /* Contents for the device control register */
 
 static volatile bool OutFlg;           /* Measurement finish flag */
+static volatile byte SumChan;          /* Number of measured channels */
 static volatile byte ModeFlg;          /* Current state of device */
 
-volatile byte AD1_OutV;                /* Sum of measured values */
+volatile byte AD1_OutV[2];             /* Sum of measured values */
 
 
 
@@ -125,10 +138,32 @@ volatile byte AD1_OutV;                /* Sum of measured values */
 */
 ISR(AD1_Interrupt)
 {
-  AD1_OutV = ADCRL;                    /* Save measured value */
-  OutFlg = TRUE;                       /* Measured values are available */
-  AD1_OnEnd();                         /* Invoke user event */
-  ModeFlg = STOP;                      /* Set the device to the stop mode */
+  AD1_OutV[SumChan] = ADCRL;           /* Save measured value */
+  SumChan++;                           /* Number of measurement */
+  if (SumChan == 2U) {                 /* Is number of measurement equal to the number of conversions? */
+    SumChan = 0U;                      /* If yes then set the number of measurement to 0 */
+    OutFlg = TRUE;                     /* Measured values are available */
+    AD1_OnEnd();                       /* Invoke user event */
+    ModeFlg = STOP;                    /* Set the device to the stop mode */
+    return;                            /* Return from interrupt */
+  }
+  ADCSC1 = Channels[SumChan];          /* Start measurement of next channel */
+}
+
+/*
+** ===================================================================
+**     Method      :  ClrSumV (component ADC)
+**
+**     Description :
+**         The method clears the internal buffers used to store sum of a 
+**         number of last conversions.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+static void ClrSumV(void)
+{
+  AD1_OutV[0] = 0U;                    /* Set variable for storing measured values to 0 */
+  AD1_OutV[1] = 0U;                    /* Set variable for storing measured values to 0 */
 }
 
 /*
@@ -145,8 +180,10 @@ ISR(AD1_Interrupt)
 void AD1_HWEnDi(void)
 {
   if (ModeFlg) {                       /* Start or stop measurement? */
-    OutFlg = FALSE;                    /* Output value isn't available */
-    ADCSC1 = Channels;                 /* If yes then start the conversion */
+    OutFlg = FALSE;                    /* Output values aren't available */
+    SumChan = 0U;                      /* Set the number of measured channels to 0 */
+    ClrSumV();                         /* Clear measured values */
+    ADCSC1 = Channels[SumChan];        /* If yes then start the conversion */
   }
 }
 
@@ -233,10 +270,13 @@ byte AD1_Measure(bool WaitForResult)
 /* ===================================================================*/
 byte AD1_GetChanValue8(byte Channel,byte *Value)
 {
+  if (Channel >= 2U) {                 /* Is channel number greater than or equal to 2 */
+    return ERR_RANGE;                  /* If yes then error */
+  }
   if (OutFlg == 0U) {                  /* Is output flag set? */
     return ERR_NOTAVAIL;               /* If no then error */
   }
-  *Value = AD1_OutV;                   /* Save measured values to the output buffer */
+  *Value = AD1_OutV[Channel];          /* Save measured values to the output buffer */
   return ERR_OK;                       /* OK */
 }
 
@@ -273,7 +313,8 @@ byte AD1_GetValue16(word *Values)
   if (OutFlg == 0U) {                  /* Is output flag set? */
     return ERR_NOTAVAIL;               /* If no then error */
   }
-  *Values = (word)(((word)(AD1_OutV)) << 8); /* Save measured values to the output buffer */
+  Values[0] = (word)(((word)(AD1_OutV[0])) << 8); /* Save measured values to the output buffer */
+  Values[1] = (word)(((word)(AD1_OutV[1])) << 8); /* Save measured values to the output buffer */
   return ERR_OK;                       /* OK */
 }
 

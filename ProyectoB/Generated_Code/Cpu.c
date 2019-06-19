@@ -7,7 +7,7 @@
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Datasheet   : MC9S08QE128RM Rev. 2 6/2007
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-06-16, 17:15, # CodeGen: 11
+**     Date/Time   : 2019-06-18, 17:59, # CodeGen: 16
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -70,7 +70,7 @@
 #include "AS1.h"
 #include "PTA2.h"
 #include "PTC0.h"
-#include "PTD3.h"
+#include "PTD2.h"
 #include "PTE6.h"
 #include "TI1.h"
 #include "PE_Types.h"
@@ -207,8 +207,8 @@ void PE_low_level_init(void)
   /* SCGC2: DBG=1,FLS=1,IRQ=1,KBI=1,ACMP=1,RTC=1,SPI2=1,SPI1=1 */
   setReg8(SCGC2, 0xFFU);                
   /* Common initialization of the CPU registers */
-  /* APCTL1: ADPC0=1 */
-  setReg8Bits(APCTL1, 0x01U);           
+  /* APCTL2: ADPC11=1,ADPC10=1 */
+  setReg8Bits(APCTL2, 0x0CU);           
   /* PTBDD: PTBDD1=1,PTBDD0=0 */
   clrSetReg8Bits(PTBDD, 0x01U, 0x02U);  
   /* PTBD: PTBD1=1 */
@@ -219,10 +219,14 @@ void PE_low_level_init(void)
   clrReg8Bits(PTADD, 0x04U);            
   /* PTCD: PTCD0=0 */
   clrReg8Bits(PTCD, 0x01U);             
-  /* PTCPE: PTCPE3=0,PTCPE0=0 */
-  clrReg8Bits(PTCPE, 0x09U);            
-  /* PTCDD: PTCDD3=0,PTCDD0=1 */
-  clrSetReg8Bits(PTCDD, 0x08U, 0x01U);  
+  /* PTCPE: PTCPE0=0 */
+  clrReg8Bits(PTCPE, 0x01U);            
+  /* PTCDD: PTCDD0=1 */
+  setReg8Bits(PTCDD, 0x01U);            
+  /* PTDPE: PTDPE2=0 */
+  clrReg8Bits(PTDPE, 0x04U);            
+  /* PTDDD: PTDDD2=0 */
+  clrReg8Bits(PTDDD, 0x04U);            
   /* PTED: PTED6=0 */
   clrReg8Bits(PTED, 0x40U);             
   /* PTEPE: PTEPE6=0 */
@@ -272,7 +276,7 @@ void PE_low_level_init(void)
   AS1_Init();
   /* ### BitIO "PTA2" init code ... */
   /* ### BitIO "PTC0" init code ... */
-  /* ### BitIO "PTD3" init code ... */
+  /* ### BitIO "PTD2" init code ... */
   /* ### BitIO "PTE6" init code ... */
   /* ### TimerInt "TI1" init code ... */
   TI1_Init();

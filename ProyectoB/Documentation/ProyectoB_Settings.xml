@@ -846,9 +846,12 @@ asm(BGND);
         <A_D_interrupt v="Vadc" />
         <A_D_interrupt_priority v="medium priority" />
       </boolgroup>
-      <list name="A/D channels" v="1">
+      <list name="A/D channels" v="2">
         <group name="Channel0">
-          <A_D_channel__pin_ v="PTA0_KBI1P0_TPM1CH0_ADP0_ACMP1PLUS" />
+          <A_D_channel__pin_ v="PTF1_ADP11" />
+        </group>
+        <group name="Channel1">
+          <A_D_channel__pin_ v="PTF0_ADP10" />
         </group>
       </list>
       <A_D_resolution v="8 bits" />
@@ -1089,11 +1092,11 @@ autoselected pull
       <EmptySection_DummyValue />
     </Events>
   </Bean>
-  <Bean name="PTD3" type="BitIO">
+  <Bean name="PTD2" type="BitIO">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="PTD3" />
-      <Pin_for_I_O v="PTC3_TPM3CH3" />
+      <Component_name v="PTD2" />
+      <Pin_for_I_O v="PTD2_KBI2P2_MISO2" />
       <Pull_resistor sel_value="no pull resistor">
         
 autoselected pull
@@ -1106,8 +1109,8 @@ push-pull
 
         <EmptySection_DummyValue />
       </Open_drain>
-      <Slew_rate_control_for_PTC3 v="no" />
-      <Drive_strength_for_PTC3 v="High" />
+      <Slew_rate_control_for_PTD2 v="no" />
+      <Drive_strength_for_PTD2 v="High" />
       <Direction v="Input" />
       <group name="Initialization">
         <Init__direction v="Input" />
