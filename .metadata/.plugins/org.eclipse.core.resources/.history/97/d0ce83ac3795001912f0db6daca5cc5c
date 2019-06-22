@@ -1,0 +1,35 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Documentation/ProyectoB_Settings.xml" FileDate="2019-06-22, 17:15:28" FileAge="1561239928889" FileType="3072" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2019-06-22, 17:07:09" FileAge="1561239429487" FileType="45637" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2019-06-22, 17:07:09" FileAge="1561239429444" FileType="8" CompNumb="4" />
+      <File Name="Sources/Events.h" FileDate="2019-06-22, 17:15:28" FileAge="1561239928824" FileType="131328" />
+      <File Name="Generated_Code/TI1.h" FileDate="2019-06-22, 17:13:37" FileAge="1561239817535" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2019-06-22, 17:07:09" FileAge="1561239429478" FileType="45637" />
+      <File Name="Documentation/ProyectoB.txt" FileDate="2019-06-22, 17:15:28" FileAge="1561239928909" FileType="3072" />
+      <File Name="Sources/Events.c" FileDate="2019-06-22, 17:15:28" FileAge="1561239928839" FileType="131328" />
+      <File Name="Generated_Code/TI1.c" FileDate="2019-06-22, 17:13:37" FileAge="1561239817529" FileType="45637" CompNumb="8" />
+      <File Name="Documentation/ProyectoB_SIGNALS.txt" FileDate="2019-06-22, 17:15:28" FileAge="1561239928859" FileType="3072" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2019-06-22, 17:07:09" FileAge="1561239429472" FileType="45637" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2019-06-22, 17:13:37" FileAge="1561239817562" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2019-06-22, 17:15:28" FileAge="1561239928798" FileType="45637" CompNumb="4" />
+      <File Name="Sources/main.c" FileDate="2019-06-22, 17:15:28" FileAge="1561239928787" FileType="128" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2019-06-22, 17:15:28" FileAge="1561239928812" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2019-06-22, 17:07:09" FileAge="1561239429482" FileType="45637" />
+      <File Name="Generated_Code/AD1.h" FileDate="2019-06-22, 17:15:28" FileAge="1561239928773" FileType="45637" CompNumb="9" />
+      <File Name="Generated_Code/AD1.c" FileDate="2019-06-22, 17:15:28" FileAge="1561239928768" FileType="45637" CompNumb="9" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2019-06-22, 17:07:09" FileAge="1561239429491" FileType="45637" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>3</CodeGenReference>
+</CodeGenerationInfo>
