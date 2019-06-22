@@ -1,0 +1,4 @@
+WARNING L1827: Symbol samp_flg has different size in main_c.obj (1 bytes) and Events_c.obj (2 bytes)
+ERROR L1822: Symbol PTC0_ClrVal in file C:/Users/adgp97/Desktop/bla/ProyectoB/PryectoB/FLASH/Sources\main_c.obj is undefined
+ERROR L1822: Symbol PTD4_SetVal in file C:/Users/adgp97/Desktop/bla/ProyectoB/PryectoB/FLASH/Sources\main_c.obj is undefined
+ERROR L1822: Symbol AS1_SendBlock in file C:/Users/adgp97/Desktop/bla/ProyectoB/PryectoB/FLASH/Sources\main_c.obj is undefined
