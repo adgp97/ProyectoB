@@ -1,0 +1,45 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Generated_Code/PTA2.c" FileDate="2019-06-22, 21:27:39" FileAge="1561255059331" FileType="45637" CompNumb="12" />
+      <File Name="Generated_Code/AS1.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059191" FileType="45637" CompNumb="13" />
+      <File Name="Generated_Code/PTC0.h" FileDate="2019-06-22, 22:15:25" FileAge="1561257925906" FileType="45637" CompNumb="14" />
+      <File Name="Documentation/ProyectoB_Settings.xml" FileDate="2019-06-22, 22:15:25" FileAge="1561257925977" FileType="3072" />
+      <File Name="Generated_Code/AS1.c" FileDate="2019-06-22, 21:27:39" FileAge="1561255059181" FileType="45637" CompNumb="13" />
+      <File Name="Generated_Code/PTC0.c" FileDate="2019-06-22, 22:15:25" FileAge="1561257925896" FileType="45637" CompNumb="14" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059291" FileType="45637" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2019-06-22, 21:27:39" FileAge="1561255059751" FileType="8" CompNumb="4" />
+      <File Name="Sources/Events.h" FileDate="2019-06-22, 22:06:00" FileAge="1561257360192" FileType="131328" />
+      <File Name="Generated_Code/TI1.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059381" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059261" FileType="45637" />
+      <File Name="Generated_Code/PTD2.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059381" FileType="45637" CompNumb="10" />
+      <File Name="Documentation/ProyectoB.txt" FileDate="2019-06-22, 22:06:00" FileAge="1561257360267" FileType="3072" />
+      <File Name="Sources/Events.c" FileDate="2019-06-22, 22:11:22" FileAge="1561257682610" FileType="131328" />
+      <File Name="Generated_Code/TI1.c" FileDate="2019-06-22, 21:27:39" FileAge="1561255059381" FileType="45637" CompNumb="8" />
+      <File Name="Documentation/ProyectoB_SIGNALS.txt" FileDate="2019-06-22, 22:15:25" FileAge="1561257925949" FileType="3072" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2019-06-22, 21:27:39" FileAge="1561255059221" FileType="45637" />
+      <File Name="Generated_Code/PTD2.c" FileDate="2019-06-22, 21:27:39" FileAge="1561255059361" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/PTA3.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059361" FileType="45637" CompNumb="11" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059221" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PTA3.c" FileDate="2019-06-22, 21:27:39" FileAge="1561255059341" FileType="45637" CompNumb="11" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2019-06-22, 22:15:25" FileAge="1561257925928" FileType="45637" CompNumb="4" />
+      <File Name="Sources/main.c" FileDate="2019-06-22, 22:11:24" FileAge="1561257684729" FileType="128" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2019-06-22, 22:06:00" FileAge="1561257360184" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059271" FileType="45637" />
+      <File Name="Generated_Code/AD1.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059181" FileType="45637" CompNumb="9" />
+      <File Name="Generated_Code/PTA2.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059331" FileType="45637" CompNumb="12" />
+      <File Name="Generated_Code/AD1.c" FileDate="2019-06-22, 21:27:39" FileAge="1561255059171" FileType="45637" CompNumb="9" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2019-06-22, 21:27:39" FileAge="1561255059301" FileType="45637" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>9</CodeGenReference>
+</CodeGenerationInfo>
